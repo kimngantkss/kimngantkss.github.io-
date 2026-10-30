@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim Ngân | Personal Space & Music</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf2f8',
+                            500: '#ec4899',
+                            600: '#db2777',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden selection:bg-pink-500 selection:text-white transition-colors duration-300" id="body">
+
+    <!-- Bầu trời đêm (Hiệu ứng sao rơi/lấp lánh) -->
+    <div id="stars-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- Thanh điều hướng (Navbar) -->
+    <header class="relative z-10 flex justify-between items-center px-6 py-4 max-w-5xl mx-auto backdrop-blur-md bg-slate-900/40 border border-slate-800/60 rounded-2xl mt-4 shadow-lg">
+        <div class="flex items-center space-x-2">
+            <span class="text-xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Kim Ngân</span>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+            <!-- Nút đổi ngôn ngữ -->
+            <button onclick="toggleLanguage()" id="lang-btn" class="px-3 py-1.5 text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-full border border-slate-700 transition">
+                EN / VI
+            </button>
+
+            <!-- Nút đổi chế độ sáng/tối -->
+            <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-yellow-400 rounded-full border border-slate-700 transition">
+                <i id="theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Phần nội dung chính (Portfolio) -->
+    <main class="relative z-10 max-w-4xl mx-auto px-6 py-12 flex flex-col items-center text-center">
+        <!-- Ảnh đại diện / Avatar giả lập -->
+        <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-pink-500 to-purple-500 floating shadow-2xl mb-6">
+            <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-4xl font-bold text-pink-400 border-4 border-slate-950">
+                KN
+            </div>
+        </div>
+
+        <!-- Tiêu đề -->
+        <h1 id="intro-title" class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+            Xin chào, mình là <span class="bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">Kim Ngân</span> ✨
+        </h1>
+        <p id="intro-desc" class="text-slate-400 text-base md:text-lg max-w-xl mb-8">
+            Chào mừng bạn đến với không gian cá nhân nhỏ của mình. Nơi lưu giữ những giai điệu âm nhạc yêu thích và chia sẻ câu chuyện của bản thân dưới bầu trời đêm.
+        </p>
+
+        <!-- Khung Nhạc Spotify -->
+        <div class="w-full max-w-md bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-2xl shadow-2xl mb-10">
+            <div class="flex items-center justify-between mb-3 px-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-pink-400 flex items-center gap-2">
+                    <i class="fa-brands fa-spotify text-lg"></i> <span id="spotify-label">Nhạc Đang Nghe</span>
+                </span>
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            </div>
+            <!-- Thay link embed Spotify của bạn vào đây nếu muốn đổi bài -->
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/3n3Ppam7vgaVa1iaRUc9Lp?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <!-- Mạng xã hội / Liên kết -->
+        <div class="flex space-x-4">
+            <a href="https://github.com/kimngantkss" target="_blank" class="w-11 h-11 flex items-center justify-center bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-full text-slate-300 hover:text-pink-400 transition shadow-lg">
+                <i class="fa-brands fa-github text-lg"></i>
+            </a>
+            <a href="#" class="w-11 h-11 flex items-center justify-center bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-full text-slate-300 hover:text-pink-400 transition shadow-lg">
+                <i class="fa-brands fa-instagram text-lg"></i>
+            </a>
+            <a href="#" class="w-11 h-11 flex items-center justify-center bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-full text-slate-300 hover:text-pink-400 transition shadow-lg">
+                <i class="fa-solid fa-envelope text-lg"></i>
+            </a>
+        </div>
+    </main>
+
+    <!-- Chân trang -->
+    <footer class="relative z-10 text-center py-6 text-xs text-slate-500">
+        © 2026 Kim Ngân. Crafted with starlight ✨
+    </footer>
+
+    <!-- Script tạo hiệu ứng sao & đa ngôn ngữ / sáng tối -->
+    <script>
+        // Tạo sao ngẫu nhiên trên nền
+        const container = document.getElementById('stars-container');
+        const starCount = 50;
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            container.appendChild(star);
+        }
+
+        // Chuyển đổi ngôn ngữ (VI / EN)
+        let currentLang = 'vi';
+        function toggleLanguage() {
+            const title = document.getElementById('intro-title');
+            const desc = document.getElementById('intro-desc');
+            const spotifyLabel = document.getElementById('spotify-label');
+            const langBtn = document.getElementById('lang-btn');
+
+            if (currentLang === 'vi') {
+                currentLang = 'en';
+                langBtn.innerText = 'VI / EN';
+                title.innerHTML = `Hello, I'm <span class="bg-gradient-to-r from-pink-400 to-
